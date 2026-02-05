@@ -3,6 +3,9 @@
 import { useEffect, useState } from 'react'
 import { Noticia } from '@/types/noticia'
 import NewsCard from '@/components/NewsCard'
+import Link from 'next/link'
+import { Cog6ToothIcon } from '@heroicons/react/24/outline'
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Home() {
   const [noticias, setNoticias] = useState<Noticia[]>([])
@@ -28,21 +31,33 @@ export default function Home() {
   )
 
   return (
-    <main className="min-h-screen bg-gray-50 pb-10">
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+    <main className="min-h-screen bg-background pb-10">
+      <div className="px-4 bg-background border-b border-border sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">N</div>
-                <h1 className="text-xl font-bold text-gray-900">NewsWatcher</h1>
-            </div>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">N</div>
+            <h1 className="text-xl font-bold text-gray-900">NewsWatcher</h1>
+          </div>
             
-            <input 
-              type="text" 
-              placeholder="Buscar tema (ej: IA, Espacio...)" 
-              className="w-full sm:w-96 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
-            />
+          <input 
+            type="text" 
+            placeholder="Buscar tema (ej: IA, Espacio...)" 
+            className="w-full sm:w-96 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+
+          <div className='flex items-center gap-2'>
+            <Link
+              href="/configuracion"
+              className='p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300'
+              title='Gestionar Fuentes'
+            >
+              <Cog6ToothIcon className='w-6 h-6' />
+            </Link>
+          </div>
+
+          <ThemeToggle />
         </div>
       </div>
 
